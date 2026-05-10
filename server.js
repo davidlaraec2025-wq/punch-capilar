@@ -2,9 +2,14 @@ import express from 'express';
 import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { sendWhatsAppNotification } from './whatsapp.js';
+import { setupAuth } from './setup-auth.js';
 
+console.log('=== SERVIDOR INICIANDO ===');
 config();
+setupAuth();
+console.log('=== SETUP AUTH COMPLETADO ===');
+
+import { sendWhatsAppNotification } from './whatsapp.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = dirname(__filename);
@@ -148,6 +153,7 @@ app.get('/health', (_req, res) => {
 });
 
 app.listen(PORT, () => {
+  console.log('=== SERVIDOR LISTO EN PUERTO', process.env.PORT, '===');
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
   console.log(`WhatsApp admin: ${process.env.WHATSAPP_ADMIN_NUMBER || 'No configurado (.env)'}`);
   console.log(`Payphone: ${process.env.PAYPHONE_APP_ID ? 'configurado' : 'No configurado (.env)'}`);

@@ -490,6 +490,7 @@ async function manejarMensaje(jid, texto) {
 
 // ─── Conexión Baileys ─────────────────────────────────────────────────────
 async function connectToWhatsApp() {
+  console.log('=== BAILEYS CONECTANDO ===');
   const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys');
   const { version }          = await fetchLatestBaileysVersion();
 
@@ -513,7 +514,7 @@ async function connectToWhatsApp() {
       console.log('Conexión cerrada. Reconectando:', retry);
       if (retry) { isConnected = false; setTimeout(connectToWhatsApp, 3000); }
     } else if (connection === 'open') {
-      console.log('WhatsApp conectado');
+      console.log('=== WHATSAPP CONECTADO ===');
       isConnected = true;
     }
   });
@@ -532,7 +533,7 @@ async function connectToWhatsApp() {
       // Ignorar contactos guardados en la agenda del teléfono
       const contacto = sock.contacts?.[jid];
       if (contacto?.name) {
-        console.log(`[WA] Ignorando contacto guardado: ${contacto.name}`);
+        console.log(`[IGNORADO] Contacto guardado: ${contacto.name} - ${jid.replace('@s.whatsapp.net', '')}`);
         continue;
       }
 
@@ -544,7 +545,7 @@ async function connectToWhatsApp() {
         '';
 
       if (!texto) continue;
-      console.log(`[WA] ${jid}: ${texto}`);
+      console.log(`[BOT] Respondiendo a desconocido: ${jid.replace('@s.whatsapp.net', '')}`);
 
       try { await manejarMensaje(jid, texto); }
       catch (e) { console.error('Error manejarMensaje:', e.message); }

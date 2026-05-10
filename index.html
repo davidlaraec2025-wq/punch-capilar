@@ -108,9 +108,12 @@
     .product-img {
       width: 100%;
       height: 240px;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
       border-radius: 6px;
       margin-bottom: 20px;
+      background: #F8F8F7;
+      padding: 12px;
     }
   </style>
 </head>
@@ -130,7 +133,7 @@
           <button class="btn-primary" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
             Ver productos
           </button>
-          <button class="btn-secondary" onclick="window.open('https://wa.me/593XXXXXXXXX?text=Hola, necesito información sobre el instrumental FUE', '_blank')">
+          <button class="btn-secondary" onclick="window.open('https://wa.me/593985675512?text=Hola, necesito información sobre el instrumental FUE', '_blank')">
             Consultar por WhatsApp
           </button>
         </div>
@@ -143,7 +146,7 @@
         </div>
       </div>
       <div>
-        <img src="https://picsum.photos/seed/fue-hero/800/600" alt="Instrumental FUE" class="w-full rounded-lg" loading="eager">
+        <img src="img/portazafiro.jpg" alt="Portazafiro FUE" class="w-full rounded-lg" loading="eager" style="object-fit: contain; background: #F8F8F7; padding: 24px; max-height: 440px;">
       </div>
     </div>
   </section>
@@ -155,7 +158,7 @@
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Producto 1: Portazafiro FUE -->
       <div class="card" data-product="portazafiro" data-price="49.99">
-        <img src="https://picsum.photos/seed/portazafiro/800/600" alt="Portazafiro FUE" class="product-img">
+        <img src="img/portazafiro.jpg" alt="Portazafiro FUE" class="product-img">
         <h3 class="text-xl font-semibold mb-2">Portazafiro FUE</h3>
         <p class="text-[#787774] text-sm mb-4 leading-relaxed">
           Mango ergonómico de precisión para implante de folículos. Material certificado para uso quirúrgico.
@@ -169,7 +172,7 @@
 
       <!-- Producto 2: Hoja Zafiro FUE -->
       <div class="card" data-product="hoja-zafiro" data-price="54.99">
-        <img src="https://picsum.photos/seed/hoja-zafiro/800/600" alt="Hoja Zafiro FUE" class="product-img">
+        <img src="img/hoja-zafiro.jpg" alt="Hoja Zafiro FUE" class="product-img">
         <h3 class="text-xl font-semibold mb-2">Hoja Zafiro FUE</h3>
         <p class="text-[#787774] text-sm mb-4 leading-relaxed">
           Hoja de corte de zafiro para incisiones de máxima precisión. Filo duradero y biocompatible.
@@ -183,7 +186,7 @@
 
       <!-- Producto 3: FUE Punch Estándar -->
       <div class="card" data-product="punch-estandar" data-price="9.99">
-        <img src="https://picsum.photos/seed/punch-std/800/600" alt="FUE Punch Estándar" class="product-img">
+        <img src="img/punch-estandar.jpg" alt="FUE Punch Estándar" class="product-img">
         <h3 class="text-xl font-semibold mb-2">FUE Punch — Estándar</h3>
         <p class="text-[#787774] text-sm mb-4 leading-relaxed">
           Diseño de punta convencional, ideal para procedimientos estándar de extracción folicular.
@@ -197,7 +200,7 @@
 
       <!-- Producto 4: FUE Punch Premium -->
       <div class="card" data-product="punch-premium" data-price="14.99">
-        <img src="https://picsum.photos/seed/punch-premium/800/600" alt="FUE Punch Premium" class="product-img">
+        <img src="img/punch-premium.jpg" alt="FUE Punch Premium" class="product-img" style="object-position: center center;">
         <h3 class="text-xl font-semibold mb-2">FUE Punch — Premium</h3>
         <p class="text-[#787774] text-sm mb-4 leading-relaxed">
           Geometría de punta anatómica avanzada. Mayor precisión en extracción del folículo para acabado premium.
@@ -213,7 +216,7 @@
       <div class="card lg:col-span-2 relative" data-product="kit-completo" data-price="99.99">
         <span class="badge absolute top-4 right-4">Ahorras $14.98</span>
         <div class="grid md:grid-cols-2 gap-6">
-          <img src="https://picsum.photos/seed/kit-completo/800/600" alt="Kit Completo FUE" class="product-img">
+          <img src="img/portazafiro.jpg" alt="Kit Completo FUE" class="product-img">
           <div>
             <span class="badge mb-3">Kit más completo</span>
             <h3 class="text-2xl font-semibold mb-3">Kit Completo FUE</h3>
@@ -522,7 +525,7 @@
         </div>
         <div>
           <h4 class="font-semibold mb-3">Contacto</h4>
-          <p class="text-[#787774] text-sm mb-1">WhatsApp: +593 XX XXX XXXX</p>
+          <p class="text-[#787774] text-sm mb-1">WhatsApp: +593 985 675 512</p>
           <p class="text-[#787774] text-sm">RUC: XXXXXXXXXXX001</p>
         </div>
         <div>

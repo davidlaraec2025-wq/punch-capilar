@@ -8,7 +8,6 @@
 //   4. Regenera known-jids-seed.txt para Railway
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
-import { gzipSync } from 'zlib';
 
 // ─── 1. Localizar archivos .vcf ───────────────────────────────────────────
 let vcfFiles = process.argv.slice(2).filter(f => f.endsWith('.vcf'));
@@ -102,7 +101,7 @@ console.log(`✓ known-jids-export.txt actualizado (${jidsExistentes.size} JIDs)
 
 // ─── 5. Regenerar known-jids-seed.txt para Railway ───────────────────────
 const CHUNK = 30000;
-const b64   = gzipSync(Buffer.from(csvActualizado)).toString('base64');
+const b64   = Buffer.from(csvActualizado).toString('base64');
 const parts = [];
 for (let i = 0; i < b64.length; i += CHUNK) parts.push(b64.slice(i, i + CHUNK));
 
@@ -110,7 +109,7 @@ const lines = parts.map((p, i) => `KNOWN_JIDS_SEED_${i + 1}=${p}`).join('\n');
 writeFileSync('known-jids-seed.txt', lines, 'utf8');
 
 console.log(`✓ known-jids-seed.txt regenerado`);
-console.log(`  Base64 comprimido : ${(b64.length / 1024).toFixed(1)} KB`);
-console.log(`  Partes Railway    : ${parts.length}`);
+console.log(`  Base64 sin compresión : ${(b64.length / 1024).toFixed(1)} KB`);
+console.log(`  Partes Railway        : ${parts.length}`);
 parts.forEach((p, i) => console.log(`  KNOWN_JIDS_SEED_${i + 1}: ${p.length} chars`));
 console.log('\nPega los valores de known-jids-seed.txt en Railway y redesplega.');

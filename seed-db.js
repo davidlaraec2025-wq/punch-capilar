@@ -1,5 +1,4 @@
 import { addJids, countJids } from './db/jids.js';
-import { gunzipSync } from 'zlib';
 
 export function seedDb() {
   const n = countJids();
@@ -20,8 +19,12 @@ export function seedDb() {
     return;
   }
 
-  const csv  = gunzipSync(Buffer.from(parts.join(''), 'base64')).toString('utf8');
-  const jids = csv.split(',').map(j => j.trim()).filter(Boolean);
-  addJids(jids);
-  console.log(`[SEED] Insertados ${jids.length} JIDs en DB`);
+  try {
+    const csv  = Buffer.from(parts.join(''), 'base64').toString('utf8');
+    const jids = csv.split(',').map(j => j.trim()).filter(Boolean);
+    addJids(jids);
+    console.log(`[SEED] Insertados ${jids.length} JIDs en DB`);
+  } catch (err) {
+    console.error(`[SEED] Error al decodificar seed — arrancando con DB vacía: ${err.message}`);
+  }
 }

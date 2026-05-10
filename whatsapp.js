@@ -7,34 +7,12 @@ import { Boom } from '@hapi/boom';
 import pino from 'pino';
 import qrcode from 'qrcode-terminal';
 import { config } from 'dotenv';
+import { isKnown, addJid, countJids } from './db/jids.js';
 
 config();
 
 let sock        = null;
 let isConnected = false;
-
-// ─── Conversaciones activas ───────────────────────────────────────────────
-function cargarConversaciones() {
-  const raw = process.env.KNOWN_JIDS || '';
-  const jids = raw.split(',').map(j => j.trim()).filter(Boolean);
-  if (jids.length) console.log(`[JIDS] Cargados ${jids.length} JIDs desde KNOWN_JIDS`);
-  return new Set(jids);
-}
-
-async function guardarConversaciones(set) {
-  const base = process.env.BASE_URL || 'http://localhost:3001';
-  try {
-    await fetch(`${base}/api/update-jids`, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ jids: [...set] })
-    });
-  } catch (e) {
-    console.error('[JIDS] Error guardando:', e.message);
-  }
-}
-
-const conversacionesActivas = cargarConversaciones();
 
 // ─── Estado en memoria ────────────────────────────────────────────────────
 // { servicio: null|'punch'|'trico', paso: null|string,
@@ -563,7 +541,7 @@ async function connectToWhatsApp() {
       const numero = jid.replace('@s.whatsapp.net', '');
 
       // Si ya hubo conversación previa → ignorar completamente
-      if (conversacionesActivas.has(jid)) {
+      if (isKnown(jid)) {
         console.log(`[IGNORADO] Conversación previa: ${numero}`);
         continue;
       }
@@ -577,10 +555,9 @@ async function connectToWhatsApp() {
 
       if (!texto) continue;
 
-      // JID nuevo — registrar y responder
-      conversacionesActivas.add(jid);
-      guardarConversaciones(conversacionesActivas); // fire-and-forget, no bloquea
-      console.log(`[BOT] Chat nuevo, respondiendo: ${numero}`);
+      // JID nuevo — registrar en SQLite y responder
+      addJid(jid);
+      console.log(`[BOT] Chat nuevo, respondiendo: ${numero} (DB: ${countJids()} JIDs)`);
 
       try { await manejarMensaje(jid, texto); }
       catch (e) { console.error('Error manejarMensaje:', e.message); }

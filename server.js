@@ -3,11 +3,13 @@ import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { setupAuth } from './setup-auth.js';
+import { seedDb }    from './seed-db.js';
 
 console.log('=== SERVIDOR INICIANDO ===');
 config();
 setupAuth();
 console.log('=== SETUP AUTH COMPLETADO ===');
+seedDb();
 
 import { sendWhatsAppNotification } from './whatsapp.js';
 
@@ -139,51 +141,6 @@ app.post('/api/notify', async (req, res) => {
   } catch (err) {
     console.error('Error en /api/notify:', err);
     res.status(500).json({ error: 'Error al enviar notificación', details: err.message });
-  }
-});
-
-// ─── Actualizar KNOWN_JIDS en Railway via API ─────────────────────────────
-app.post('/api/update-jids', async (req, res) => {
-  const { jids } = req.body;
-  if (!Array.isArray(jids)) return res.status(400).json({ error: 'jids debe ser array' });
-
-  const token         = process.env.RAILWAY_API_TOKEN;
-  const projectId     = process.env.RAILWAY_PROJECT_ID;
-  const serviceId     = process.env.RAILWAY_SERVICE_ID;
-  const environmentId = process.env.RAILWAY_ENVIRONMENT_ID;
-
-  if (!token || !projectId || !serviceId || !environmentId) {
-    return res.status(503).json({ error: 'Railway API no configurada — agrega RAILWAY_API_TOKEN, RAILWAY_PROJECT_ID, RAILWAY_SERVICE_ID, RAILWAY_ENVIRONMENT_ID' });
-  }
-
-  const value = jids.join(',');
-
-  try {
-    const response = await fetch('https://backboard.railway.app/graphql/v2', {
-      method:  'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type':  'application/json'
-      },
-      body: JSON.stringify({
-        query: `mutation variableUpsert($input: VariableUpsertInput!) { variableUpsert(input: $input) }`,
-        variables: {
-          input: { projectId, serviceId, environmentId, name: 'KNOWN_JIDS', value }
-        }
-      })
-    });
-
-    const data = await response.json();
-    if (data.errors) {
-      console.error('[JIDS] Railway API error:', JSON.stringify(data.errors));
-      return res.status(502).json({ error: 'Error Railway API', details: data.errors });
-    }
-
-    console.log(`[JIDS] KNOWN_JIDS actualizado: ${jids.length} JIDs`);
-    res.json({ success: true, count: jids.length });
-  } catch (e) {
-    console.error('[JIDS] Error llamando Railway API:', e.message);
-    res.status(500).json({ error: e.message });
   }
 });
 

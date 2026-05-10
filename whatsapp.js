@@ -14,6 +14,13 @@ config();
 let sock        = null;
 let isConnected = false;
 
+// ─── Deduplicación de mensajes (evita doble proceso en reconexiones) ───────
+const mensajesProcesados = new Set();
+
+// ─── Mapa local de contactos (poblado antes de procesar mensajes) ──────────
+// Persiste entre reconexiones; más fiable que sock.contacts en el arranque
+const contactsMap = new Map();
+
 // ─── Estado en memoria ────────────────────────────────────────────────────
 // { servicio: null|'punch'|'trico', paso: null|string,
 //   datos: {}, visitado: bool, reminderTimer: null }
@@ -520,6 +527,22 @@ async function connectToWhatsApp() {
     }
   });
 
+  // Poblar contactsMap antes de que lleguen mensajes
+  sock.ev.on('contacts.upsert', (contacts) => {
+    for (const c of contacts) {
+      if (c.id) contactsMap.set(c.id, c);
+    }
+    console.log(`[CONTACTS] ${contacts.length} contactos cargados (total: ${contactsMap.size})`);
+  });
+
+  sock.ev.on('contacts.update', (updates) => {
+    for (const u of updates) {
+      if (!u.id) continue;
+      const prev = contactsMap.get(u.id) || {};
+      contactsMap.set(u.id, { ...prev, ...u });
+    }
+  });
+
   sock.ev.on('messages.upsert', async ({ messages, type }) => {
     if (type !== 'notify') return;
 
@@ -527,12 +550,21 @@ async function connectToWhatsApp() {
       if (msg.key.fromMe)  continue;
       if (!msg.message)    continue;
 
+      // Deduplicar: ignorar si ya procesamos este mensaje (puede ocurrir en reconexiones)
+      const msgId = msg.key.id;
+      if (mensajesProcesados.has(msgId)) continue;
+      mensajesProcesados.add(msgId);
+      if (mensajesProcesados.size > 2000) {
+        mensajesProcesados.delete(mensajesProcesados.values().next().value);
+      }
+
       const jid = msg.key.remoteJid;
       if (!jid)            continue;
       if (jid === ADMIN_JID()) continue;   // nunca responder al admin
 
       // Ignorar contactos guardados en la agenda del teléfono
-      const contacto = sock.contacts?.[jid];
+      // contactsMap tiene prioridad; sock.contacts como fallback
+      const contacto = contactsMap.get(jid) || sock.contacts?.[jid];
       const nombreGuardado = contacto?.name || contacto?.notify;
       if (nombreGuardado) {
         console.log(`[IGNORADO] Contacto guardado: ${nombreGuardado} - ${jid.replace('@s.whatsapp.net', '')}`);

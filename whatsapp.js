@@ -7,7 +7,6 @@ import { Boom } from '@hapi/boom';
 import pino from 'pino';
 import qrcode from 'qrcode-terminal';
 import { config } from 'dotenv';
-import { readFileSync, writeFileSync, existsSync } from 'fs';
 
 config();
 
@@ -15,20 +14,24 @@ let sock        = null;
 let isConnected = false;
 
 // ─── Conversaciones activas ───────────────────────────────────────────────
-const CONV_FILE = 'conversaciones.json';
-
 function cargarConversaciones() {
-  try {
-    if (existsSync(CONV_FILE)) {
-      const data = JSON.parse(readFileSync(CONV_FILE, 'utf8'));
-      return new Set(Array.isArray(data) ? data : []);
-    }
-  } catch (_) {}
-  return new Set();
+  const raw = process.env.KNOWN_JIDS || '';
+  const jids = raw.split(',').map(j => j.trim()).filter(Boolean);
+  if (jids.length) console.log(`[JIDS] Cargados ${jids.length} JIDs desde KNOWN_JIDS`);
+  return new Set(jids);
 }
 
-function guardarConversaciones(set) {
-  writeFileSync(CONV_FILE, JSON.stringify([...set]), 'utf8');
+async function guardarConversaciones(set) {
+  const base = process.env.BASE_URL || 'http://localhost:3001';
+  try {
+    await fetch(`${base}/api/update-jids`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ jids: [...set] })
+    });
+  } catch (e) {
+    console.error('[JIDS] Error guardando:', e.message);
+  }
 }
 
 const conversacionesActivas = cargarConversaciones();
@@ -576,7 +579,7 @@ async function connectToWhatsApp() {
 
       // JID nuevo — registrar y responder
       conversacionesActivas.add(jid);
-      guardarConversaciones(conversacionesActivas);
+      guardarConversaciones(conversacionesActivas); // fire-and-forget, no bloquea
       console.log(`[BOT] Chat nuevo, respondiendo: ${numero}`);
 
       try { await manejarMensaje(jid, texto); }

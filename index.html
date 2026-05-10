@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es-EC">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instrumental FUE Premium — Trasplante Capilar Ecuador</title>
+  <meta name="description" content="Instrumental quirúrgico FUE de precisión para cirujanos capilares en Ecuador. Portazafiro, Hoja Zafiro y FUE Punch certificados. Envío a todo el país.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      color: #2F3437;
+      background: #FBFBFA;
+      -webkit-font-smoothing: antialiased;
+    }
+    .serif {
+      font-family: 'Newsreader', Georgia, serif;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .animate-entry {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+    .animate-entry.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .btn-primary {
+      background: #111111;
+      color: #FFFFFF;
+      border-radius: 6px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 200ms ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: #333333;
+      transform: scale(0.98);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: #111111;
+      border: 1px solid #EAEAEA;
+      border-radius: 6px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 200ms ease;
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      border-color: #111111;
+      transform: scale(0.98);
+    }
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #EAEAEA;
+      border-radius: 8px;
+      padding: 32px;
+      transition: all 200ms ease;
+    }
+    .divider {
+      border-bottom: 1px solid #EAEAEA;
+    }
+    .badge {
+      background: #FBF3DB;
+      color: #2F3437;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-block;
+    }
+    .tab {
+      padding: 12px 24px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 200ms ease;
+      font-weight: 500;
+    }
+    .tab.active {
+      border-bottom-color: #111111;
+    }
+    .faq-item {
+      cursor: pointer;
+    }
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 300ms ease;
+    }
+    .faq-content.open {
+      max-height: 200px;
+    }
+    .product-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- [01] HERO -->
+  <section class="animate-entry px-6 py-16 md:py-24 max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="serif text-4xl md:text-6xl mb-6">
+          Instrumental FUE de precisión para cirujanos capilares en Ecuador
+        </h1>
+        <p class="text-lg text-[#787774] mb-8 leading-relaxed">
+          Portazafiro, Hoja Zafiro y FUE Punch certificados para trasplante capilar. Diseñados para máxima precisión en extracción folicular. Envío rápido a Quito, Guayaquil y todo el país.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+          <button class="btn-primary" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+            Ver productos
+          </button>
+          <button class="btn-secondary" onclick="window.open('https://wa.me/593XXXXXXXXX?text=Hola, necesito información sobre el instrumental FUE', '_blank')">
+            Consultar por WhatsApp
+          </button>
+        </div>
+        <div class="flex flex-wrap gap-4 text-sm text-[#787774]">
+          <span>Envío a todo Ecuador</span>
+          <span>·</span>
+          <span>Pago seguro</span>
+          <span>·</span>
+          <span>Soporte WhatsApp</span>
+        </div>
+      </div>
+      <div>
+        <img src="https://picsum.photos/seed/fue-hero/800/600" alt="Instrumental FUE" class="w-full rounded-lg" loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <!-- [02] CATÁLOGO -->
+  <section id="catalogo" class="animate-entry px-6 py-16 max-w-6xl mx-auto">
+    <h2 class="serif text-3xl md:text-4xl mb-12 text-center">Catálogo de instrumental</h2>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Producto 1: Portazafiro FUE -->
+      <div class="card" data-product="portazafiro" data-price="49.99">
+        <img src="https://picsum.photos/seed/portazafiro/800/600" alt="Portazafiro FUE" class="product-img">
+        <h3 class="text-xl font-semibold mb-2">Portazafiro FUE</h3>
+        <p class="text-[#787774] text-sm mb-4 leading-relaxed">
+          Mango ergonómico de precisión para implante de folículos. Material certificado para uso quirúrgico.
+        </p>
+        <div class="mb-4">
+          <div class="text-xs text-[#787774] mb-1">Sin IVA: $44.63 + IVA $5.36</div>
+          <div class="text-2xl font-bold">$49.99</div>
+        </div>
+        <button class="btn-primary w-full add-to-cart">Agregar</button>
+      </div>
+
+      <!-- Producto 2: Hoja Zafiro FUE -->
+      <div class="card" data-product="hoja-zafiro" data-price="54.99">
+        <img src="https://picsum.photos/seed/hoja-zafiro/800/600" alt="Hoja Zafiro FUE" class="product-img">
+        <h3 class="text-xl font-semibold mb-2">Hoja Zafiro FUE</h3>
+        <p class="text-[#787774] text-sm mb-4 leading-relaxed">
+          Hoja de corte de zafiro para incisiones de máxima precisión. Filo duradero y biocompatible.
+        </p>
+        <div class="mb-4">
+          <div class="text-xs text-[#787774] mb-1">Sin IVA: $49.10 + IVA $5.89</div>
+          <div class="text-2xl font-bold">$54.99</div>
+        </div>
+        <button class="btn-primary w-full add-to-cart">Agregar</button>
+      </div>
+
+      <!-- Producto 3: FUE Punch Estándar -->
+      <div class="card" data-product="punch-estandar" data-price="9.99">
+        <img src="https://picsum.photos/seed/punch-std/800/600" alt="FUE Punch Estándar" class="product-img">
+        <h3 class="text-xl font-semibold mb-2">FUE Punch — Estándar</h3>
+        <p class="text-[#787774] text-sm mb-4 leading-relaxed">
+          Diseño de punta convencional, ideal para procedimientos estándar de extracción folicular.
+        </p>
+        <div class="mb-4">
+          <div class="text-xs text-[#787774] mb-1">Sin IVA: $8.92 + IVA $1.07</div>
+          <div class="text-2xl font-bold">$9.99</div>
+        </div>
+        <button class="btn-primary w-full add-to-cart">Agregar</button>
+      </div>
+
+      <!-- Producto 4: FUE Punch Premium -->
+      <div class="card" data-product="punch-premium" data-price="14.99">
+        <img src="https://picsum.photos/seed/punch-premium/800/600" alt="FUE Punch Premium" class="product-img">
+        <h3 class="text-xl font-semibold mb-2">FUE Punch — Premium</h3>
+        <p class="text-[#787774] text-sm mb-4 leading-relaxed">
+          Geometría de punta anatómica avanzada. Mayor precisión en extracción del folículo para acabado premium.
+        </p>
+        <div class="mb-4">
+          <div class="text-xs text-[#787774] mb-1">Sin IVA: $13.38 + IVA $1.61</div>
+          <div class="text-2xl font-bold">$14.99</div>
+        </div>
+        <button class="btn-primary w-full add-to-cart">Agregar</button>
+      </div>
+
+      <!-- Combo: Kit Completo -->
+      <div class="card lg:col-span-2 relative" data-product="kit-completo" data-price="99.99">
+        <span class="badge absolute top-4 right-4">Ahorras $14.98</span>
+        <div class="grid md:grid-cols-2 gap-6">
+          <img src="https://picsum.photos/seed/kit-completo/800/600" alt="Kit Completo FUE" class="product-img">
+          <div>
+            <span class="badge mb-3">Kit más completo</span>
+            <h3 class="text-2xl font-semibold mb-3">Kit Completo FUE</h3>
+            <p class="text-[#787774] mb-4 leading-relaxed">
+              Incluye Portazafiro + Hoja Zafiro + FUE Punch Estándar. Todo lo necesario para comenzar procedimientos FUE con máxima calidad.
+            </p>
+            <div class="mb-6">
+              <div class="text-sm text-[#787774] line-through mb-1">Precio regular $114.97</div>
+              <div class="text-3xl font-bold">$99.99</div>
+              <div class="text-xs text-[#787774] mt-1">IVA incluido</div>
+            </div>
+            <button class="btn-primary w-full add-to-cart">Agregar kit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [03] BENEFICIOS -->
+  <section class="animate-entry px-6 py-16 max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="divider pb-8">
+        <svg width="32" height="32" viewBox="0 0 256 256" class="mb-4">
+          <path fill="#111111" d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m40-88a8 8 0 0 1-8 8h-64a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8"/>
+        </svg>
+        <h3 class="font-semibold text-lg mb-2">Precisión quirúrgica certificada</h3>
+        <p class="text-[#787774] text-sm">Material médico con tolerancias de corte submilimétricas</p>
+      </div>
+
+      <div class="divider pb-8">
+        <svg width="32" height="32" viewBox="0 0 256 256" class="mb-4">
+          <path fill="#111111" d="M232 128a104 104 0 1 0-208 0a104 104 0 0 0 208 0m-16 0a88 88 0 1 1-88-88a88 88 0 0 1 88 88"/>
+        </svg>
+        <h3 class="font-semibold text-lg mb-2">Ergonomía en cirugía prolongada</h3>
+        <p class="text-[#787774] text-sm">Diseño balanceado que reduce fatiga en procedimientos largos</p>
+      </div>
+
+      <div class="divider pb-8">
+        <svg width="32" height="32" viewBox="0 0 256 256" class="mb-4">
+          <path fill="#111111" d="M225.9 102.8c-3.8-3.9-7.7-8-9.2-11.5s-1.4-8.7-1.5-14c-.1-9.7-.3-20.8-8-28.5s-18.8-7.9-28.5-8c-5.3-.1-10.7-.2-14-1.5s-7.6-5.4-11.5-9.2C146.3 23.5 138.4 16 128 16s-18.3 7.5-25.2 14.1c-3.9 3.8-8 7.7-11.5 9.2s-8.7 1.4-14 1.5c-9.7.1-20.8.3-28.5 8s-7.9 18.8-8 28.5c-.1 5.3-.2 10.7-1.5 14s-5.4 7.6-9.2 11.5C23.5 109.7 16 117.6 16 128s7.5 18.3 14.1 25.2c3.8 3.9 7.7 8 9.2 11.5s1.4 8.7 1.5 14c.1 9.7.3 20.8 8 28.5s18.8 7.9 28.5 8c5.3.1 10.7.2 14 1.5s7.6 5.4 11.5 9.2c6.9 6.6 14.8 14.1 25.2 14.1s18.3-7.5 25.2-14.1c3.9-3.8 8-7.7 11.5-9.2s8.7-1.4 14-1.5c9.7-.1 20.8-.3 28.5-8s7.9-18.8 8-28.5c.1-5.3.2-10.7 1.5-14s5.4-7.6 9.2-11.5c6.6-6.9 14.1-14.8 14.1-25.2s-7.5-18.3-14.1-25.2m-11.4 39.3c-4.8 5-9.7 10.2-12.4 16.5s-2.5 13.1-2.6 19.8c0 5.1-.1 10.9-2.3 13.1s-8 2.3-13.1 2.3c-6.7.1-13.5.2-19.8 2.6s-11.5 7.6-16.5 12.4c-3.8 3.6-8 7.6-10.4 7.6s-6.6-4-10.4-7.6c-5-4.8-10.2-9.7-16.5-12.4s-13.1-2.5-19.8-2.6c-5.1 0-10.9-.1-13.1-2.3s-2.3-8-2.3-13.1c-.1-6.7-.2-13.5-2.6-19.8s-7.6-11.5-12.4-16.5c-3.6-3.8-7.6-8-7.6-10.4s4-6.6 7.6-10.4c4.8-5 9.7-10.2 12.4-16.5s2.5-13.1 2.6-19.8c0-5.1.1-10.9 2.3-13.1s8-2.3 13.1-2.3c6.7-.1 13.5-.2 19.8-2.6s11.5-7.6 16.5-12.4c3.8-3.6 8-7.6 10.4-7.6s6.6 4 10.4 7.6c5 4.8 10.2 9.7 16.5 12.4s13.1 2.5 19.8 2.6c5.1 0 10.9.1 13.1 2.3s2.3 8 2.3 13.1c.1 6.7.2 13.5 2.6 19.8s7.6 11.5 12.4 16.5c3.6 3.8 7.6 8 7.6 10.4s-4 6.6-7.6 10.4"/>
+        </svg>
+        <h3 class="font-semibold text-lg mb-2">Durabilidad comprobada</h3>
+        <p class="text-[#787774] text-sm">Materiales resistentes a múltiples ciclos de esterilización</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- [04] GUÍA DE USO -->
+  <section class="animate-entry px-6 py-16 max-w-4xl mx-auto">
+    <h2 class="serif text-3xl md:text-4xl mb-8 text-center">Guía de uso técnico</h2>
+
+    <div class="flex border-b border-[#EAEAEA] mb-8">
+      <div class="tab active" data-tab="hoja">Hoja Zafiro</div>
+      <div class="tab" data-tab="porta">Portazafiro</div>
+      <div class="tab" data-tab="punch">FUE Punch</div>
+    </div>
+
+    <div class="tab-content active" id="hoja-content">
+      <div class="card">
+        <h3 class="font-semibold text-xl mb-4">Hoja Zafiro FUE</h3>
+        <div class="space-y-4 text-[#787774]">
+          <div>
+            <strong class="text-[#2F3437]">Cuándo usarlo:</strong> Para incisiones de alta precisión en fase de implante. El zafiro permite cortes más finos que el acero.
+          </div>
+          <div>
+            <strong class="text-[#2F3437]">Técnica:</strong> Sostener en ángulo de 40-45°. Presión uniforme constante. No realizar movimientos laterales durante el corte.
+          </div>
+          <div>
+            <strong class="text-[#2F3437]">Cuidado:</strong> Limpiar con solución salina después de cada uso. Esterilizar en autoclave a 121°C. Evitar golpes directos en el filo.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content hidden" id="porta-content">
+      <div class="card">
+        <h3 class="font-semibold text-xl mb-4">Portazafiro FUE</h3>
+        <div class="space-y-4 text-[#787774]">
+          <div>
+            <strong class="text-[#2F3437]">Cuándo usarlo:</strong> Mango principal para inserción de folículos durante el implante. Diseñado para trabajar con hoja zafiro.
+          </div>
+          <div>
+            <strong class="text-[#2F3437]">Técnica:</strong> Agarre tipo lapicero para máximo control. Inserción con movimiento perpendicular al cuero cabelludo.
+          </div>
+          <div>
+            <strong class="text-[#2F3437]">Cuidado:</strong> Verificar fijación de hoja antes de cada uso. Lubricar mecanismo de sujeción mensualmente. Autoclave estándar.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content hidden" id="punch-content">
+      <div class="card">
+        <h3 class="font-semibold text-xl mb-4">FUE Punch</h3>
+        <div class="space-y-4 text-[#787774]">
+          <div>
+            <strong class="text-[#2F3437]">Cuándo usarlo:</strong> Extracción individual de unidades foliculares de zona donante. El diámetro se elige según grosor del cabello del paciente.
+          </div>
+          <div>
+            <strong class="text-[#2F3437]">Técnica:</strong> Rotación suave 180-360° con presión controlada. Profundidad de 3-4mm. Evitar movimientos bruscos que dañen el folículo.
+          </div>
+          <div>
+            <strong class="text-[#2F3437]">Cuidado:</strong> Inspeccionar filo antes de cada procedimiento. Desechar si hay deformación visible. Esterilización autoclave 134°C máximo.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [05] PRUEBA SOCIAL -->
+  <section class="animate-entry px-6 py-16 max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="badge">Instrumental utilizado en clínicas de Quito y Guayaquil</span>
+    </div>
+
+    <div class="space-y-8">
+      <div class="divider pb-8">
+        <p class="serif text-2xl italic mb-4 leading-relaxed">
+          "La precisión del FUE Punch Premium me permite extracciones más limpias con mínimo trauma folicular. Mis resultados mejoraron notablemente."
+        </p>
+        <p class="text-[#787774] text-sm">Dr. Carlos Mendoza · Cirujano Capilar · Quito, Ecuador</p>
+      </div>
+
+      <div class="divider pb-8">
+        <p class="serif text-2xl italic mb-4 leading-relaxed">
+          "El Portazafiro tiene el balance perfecto. Después de 4 horas de cirugía mis manos no se fatigan como con otros instrumentos."
+        </p>
+        <p class="text-[#787774] text-sm">Dra. María Salazar · Tricóloga · Guayaquil, Ecuador</p>
+      </div>
+
+      <div class="pb-8">
+        <p class="serif text-2xl italic mb-4 leading-relaxed">
+          "Invertí en el Kit Completo para mi clínica y la diferencia es visible. Material de primera que mis pacientes notan en los resultados."
+        </p>
+        <p class="text-[#787774] text-sm">Dr. Andrés Villavicencio · Dermatólogo · Cuenca, Ecuador</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- [06] CHECKOUT -->
+  <section id="checkout" class="animate-entry px-6 py-16 max-w-2xl mx-auto">
+    <div class="card">
+      <h2 class="serif text-3xl mb-8">Resumen de orden</h2>
+
+      <div id="cart-items" class="space-y-4 mb-6">
+        <p class="text-[#787774]">No hay productos seleccionados</p>
+      </div>
+
+      <div class="divider py-4 space-y-2">
+        <div class="flex justify-between text-sm">
+          <span class="text-[#787774]">Subtotal</span>
+          <span id="subtotal">$0.00</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-[#787774]">IVA (12%)</span>
+          <span id="iva">$0.00</span>
+        </div>
+        <div class="flex justify-between text-xl font-bold">
+          <span>Total</span>
+          <span id="total">$0.00</span>
+        </div>
+      </div>
+
+      <div class="mt-8 space-y-4">
+        <button class="btn-primary w-full" id="payphone-btn" disabled>
+          Pagar con tarjeta (Payphone)
+        </button>
+        <button class="btn-secondary w-full" id="whatsapp-btn" disabled>
+          Coordinar por WhatsApp
+        </button>
+        <p class="text-xs text-center text-[#787774]">
+          Pago seguro · Tarjetas ecuatorianas · Factura electrónica disponible
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- [07] ENVÍO -->
+  <section class="animate-entry px-6 py-16 max-w-4xl mx-auto">
+    <h2 class="serif text-3xl md:text-4xl mb-8 text-center">Envío a todo Ecuador</h2>
+    <div class="card">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="font-semibold text-lg mb-3">Couriers disponibles</h3>
+          <ul class="space-y-2 text-[#787774]">
+            <li>• Servientrega</li>
+            <li>• Laar Courier</li>
+            <li>• Speed</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg mb-3">Tiempo de entrega</h3>
+          <ul class="space-y-2 text-[#787774]">
+            <li>• Quito / Guayaquil: 24-48 horas</li>
+            <li>• Provincias: 2-4 días hábiles</li>
+          </ul>
+        </div>
+      </div>
+      <div class="divider mt-8 pt-8">
+        <h3 class="font-semibold text-lg mb-2">Política de devolución</h3>
+        <p class="text-[#787774]">
+          Aceptamos devoluciones dentro de 15 días calendario si el instrumental no ha sido abierto ni usado. El cliente cubre el envío de retorno. Reembolso completo una vez verificado el estado del producto.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- [08] FAQ -->
+  <section class="animate-entry px-6 py-16 max-w-3xl mx-auto">
+    <h2 class="serif text-3xl md:text-4xl mb-12 text-center">Preguntas frecuentes</h2>
+
+    <div class="space-y-4">
+      <div class="faq-item divider pb-4">
+        <div class="flex justify-between items-center cursor-pointer">
+          <h3 class="font-semibold">¿Realizan envíos a provincias?</h3>
+          <svg class="faq-icon" width="24" height="24" viewBox="0 0 256 256">
+            <path fill="#111111" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8"/>
+          </svg>
+        </div>
+        <div class="faq-content">
+          <p class="text-[#787774] mt-3">
+            Sí, realizamos envíos a todas las provincias de Ecuador mediante Servientrega, Laar y Speed. El tiempo de entrega es de 2-4 días hábiles fuera de Quito y Guayaquil.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item divider pb-4">
+        <div class="flex justify-between items-center cursor-pointer">
+          <h3 class="font-semibold">¿Puedo pagar con tarjeta del Banco Pichincha, Produbanco o Diners?</h3>
+          <svg class="faq-icon" width="24" height="24" viewBox="0 0 256 256">
+            <path fill="#111111" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8"/>
+          </svg>
+        </div>
+        <div class="faq-content">
+          <p class="text-[#787774] mt-3">
+            Sí, aceptamos todas las tarjetas de crédito y débito ecuatorianas a través de Payphone, incluyendo Pichincha, Produbanco, Diners, Guayaquil, Pacífica y otras.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item divider pb-4">
+        <div class="flex justify-between items-center cursor-pointer">
+          <h3 class="font-semibold">¿Emiten factura electrónica con RUC?</h3>
+          <svg class="faq-icon" width="24" height="24" viewBox="0 0 256 256">
+            <path fill="#111111" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8"/>
+          </svg>
+        </div>
+        <div class="faq-content">
+          <p class="text-[#787774] mt-3">
+            Sí, emitimos factura electrónica válida ante el SRI. Solo necesitamos tu RUC o cédula al momento de la compra.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item divider pb-4">
+        <div class="flex justify-between items-center cursor-pointer">
+          <h3 class="font-semibold">¿Los instrumentos tienen garantía?</h3>
+          <svg class="faq-icon" width="24" height="24" viewBox="0 0 256 256">
+            <path fill="#111111" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8"/>
+          </svg>
+        </div>
+        <div class="faq-content">
+          <p class="text-[#787774] mt-3">
+            Todos nuestros instrumentos tienen garantía de 6 meses contra defectos de fabricación. No cubre desgaste normal por uso ni daños por mal manejo.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item divider pb-4">
+        <div class="flex justify-between items-center cursor-pointer">
+          <h3 class="font-semibold">¿Cómo elijo el tamaño correcto de FUE Punch?</h3>
+          <svg class="faq-icon" width="24" height="24" viewBox="0 0 256 256">
+            <path fill="#111111" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8"/>
+          </svg>
+        </div>
+        <div class="faq-content">
+          <p class="text-[#787774] mt-3">
+            El diámetro del punch depende del grosor del cabello del paciente. Para cabello fino usar 0.7-0.8mm, grosor medio 0.85-0.95mm, cabello grueso 1.0mm. Contáctanos por WhatsApp para asesoría personalizada.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item pb-4">
+        <div class="flex justify-between items-center cursor-pointer">
+          <h3 class="font-semibold">¿Cuánto tarda el envío a mi ciudad?</h3>
+          <svg class="faq-icon" width="24" height="24" viewBox="0 0 256 256">
+            <path fill="#111111" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8"/>
+          </svg>
+        </div>
+        <div class="faq-content">
+          <p class="text-[#787774] mt-3">
+            Quito y Guayaquil: 24-48 horas. Cuenca, Ambato, Manta, Ibarra: 2-3 días. Otras provincias: 3-4 días hábiles. Todos los envíos incluyen código de rastreo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [09] FOOTER -->
+  <footer class="px-6 py-12 border-t border-[#EAEAEA] bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="serif text-xl mb-3">Punch Capilar Ecuador</h3>
+          <p class="text-[#787774] text-sm">Instrumental FUE de precisión para profesionales</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Contacto</h4>
+          <p class="text-[#787774] text-sm mb-1">WhatsApp: +593 XX XXX XXXX</p>
+          <p class="text-[#787774] text-sm">RUC: XXXXXXXXXXX001</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Legal</h4>
+          <div class="space-y-2 text-sm text-[#787774]">
+            <div><a href="#" class="hover:text-[#111111]">Política de privacidad</a></div>
+            <div><a href="#" class="hover:text-[#111111]">Términos y condiciones</a></div>
+            <div><a href="#" class="hover:text-[#111111]">Contacto</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 pt-8 border-t border-[#EAEAEA] text-center text-sm text-[#787774]">
+        © 2026 Punch Capilar Ecuador. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/ui.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

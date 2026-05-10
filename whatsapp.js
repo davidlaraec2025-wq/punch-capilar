@@ -533,8 +533,9 @@ async function connectToWhatsApp() {
 
       // Ignorar contactos guardados en la agenda del teléfono
       const contacto = sock.contacts?.[jid];
-      if (contacto?.name) {
-        console.log(`[IGNORADO] Contacto guardado: ${contacto.name} - ${jid.replace('@s.whatsapp.net', '')}`);
+      const nombreGuardado = contacto?.name || contacto?.notify;
+      if (nombreGuardado) {
+        console.log(`[IGNORADO] Contacto guardado: ${nombreGuardado} - ${jid.replace('@s.whatsapp.net', '')}`);
         continue;
       }
 

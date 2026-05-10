@@ -7,11 +7,31 @@ import { Boom } from '@hapi/boom';
 import pino from 'pino';
 import qrcode from 'qrcode-terminal';
 import { config } from 'dotenv';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 
 config();
 
 let sock        = null;
 let isConnected = false;
+
+// ─── Conversaciones activas ───────────────────────────────────────────────
+const CONV_FILE = 'conversaciones.json';
+
+function cargarConversaciones() {
+  try {
+    if (existsSync(CONV_FILE)) {
+      const data = JSON.parse(readFileSync(CONV_FILE, 'utf8'));
+      return new Set(Array.isArray(data) ? data : []);
+    }
+  } catch (_) {}
+  return new Set();
+}
+
+function guardarConversaciones(set) {
+  writeFileSync(CONV_FILE, JSON.stringify([...set]), 'utf8');
+}
+
+const conversacionesActivas = cargarConversaciones();
 
 // ─── Estado en memoria ────────────────────────────────────────────────────
 // { servicio: null|'punch'|'trico', paso: null|string,
@@ -537,6 +557,14 @@ async function connectToWhatsApp() {
         continue;
       }
 
+      const numero = jid.replace('@s.whatsapp.net', '');
+
+      // Si ya hubo conversación previa → ignorar completamente
+      if (conversacionesActivas.has(jid)) {
+        console.log(`[IGNORADO] Conversación previa: ${numero}`);
+        continue;
+      }
+
       const texto =
         msg.message.conversation ||
         msg.message.extendedTextMessage?.text ||
@@ -545,7 +573,11 @@ async function connectToWhatsApp() {
         '';
 
       if (!texto) continue;
-      console.log(`[BOT] Respondiendo a desconocido: ${jid.replace('@s.whatsapp.net', '')}`);
+
+      // JID nuevo — registrar y responder
+      conversacionesActivas.add(jid);
+      guardarConversaciones(conversacionesActivas);
+      console.log(`[BOT] Chat nuevo, respondiendo: ${numero}`);
 
       try { await manejarMensaje(jid, texto); }
       catch (e) { console.error('Error manejarMensaje:', e.message); }

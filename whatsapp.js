@@ -552,11 +552,9 @@ async function connectToWhatsApp() {
   sock.ev.on('messages.upsert', async ({ messages, type }) => {
     if (type !== 'notify') return;
 
-    // Switch de emergencia: BOT_ACTIVO=false en Railway para desactivar respuestas
-    if (process.env.BOT_ACTIVO === 'false') {
-      console.log('[BOT] Desactivado via BOT_ACTIVO=false — ignorando mensajes');
-      return;
-    }
+    // Bot desactivado temporalmente
+    console.log('[BOT] Desactivado — ignorando mensajes');
+    return;
 
     for (const msg of messages) {
       if (msg.key.fromMe)  continue;

@@ -527,12 +527,17 @@ async function connectToWhatsApp() {
     }
   });
 
-  // Poblar contactsMap antes de que lleguen mensajes
+  // Poblar contactsMap Y SQLite al sincronizar contactos
+  // Doble capa: contactsMap (veloz, en memoria) + DB (persiste entre mensajes)
   sock.ev.on('contacts.upsert', (contacts) => {
+    const jidsNuevos = [];
     for (const c of contacts) {
-      if (c.id) contactsMap.set(c.id, c);
+      if (!c.id) continue;
+      contactsMap.set(c.id, c);
+      if (!isKnown(c.id)) jidsNuevos.push(c.id);
     }
-    console.log(`[CONTACTS] ${contacts.length} contactos cargados (total: ${contactsMap.size})`);
+    if (jidsNuevos.length) addJids(jidsNuevos);
+    console.log(`[CONTACTS] ${contacts.length} contactos cargados (total mapa: ${contactsMap.size}, nuevos en DB: ${jidsNuevos.length})`);
   });
 
   sock.ev.on('contacts.update', (updates) => {
@@ -540,11 +545,18 @@ async function connectToWhatsApp() {
       if (!u.id) continue;
       const prev = contactsMap.get(u.id) || {};
       contactsMap.set(u.id, { ...prev, ...u });
+      if (!isKnown(u.id)) addJid(u.id);
     }
   });
 
   sock.ev.on('messages.upsert', async ({ messages, type }) => {
     if (type !== 'notify') return;
+
+    // Switch de emergencia: BOT_ACTIVO=false en Railway para desactivar respuestas
+    if (process.env.BOT_ACTIVO === 'false') {
+      console.log('[BOT] Desactivado via BOT_ACTIVO=false — ignorando mensajes');
+      return;
+    }
 
     for (const msg of messages) {
       if (msg.key.fromMe)  continue;
